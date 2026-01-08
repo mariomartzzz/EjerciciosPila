@@ -38,4 +38,5 @@ public class Pila {
 		array[fin]=null;	
 		return resultado;
 	}
+	//acabar
 }
