@@ -27,27 +27,36 @@ public class Pila {
 		Depurador.imprimirTraza("Se añade "+s+" a la pila.");
 		if(fin==array.length){
 			String[] arrayMayor=new String[array.length+3];
-			clonar(array,arrayMayor);
-			toString(arrayMayor);
-			arrayMayor[fin]=s;
+			for(int i=0;i<array.length;i++) {
+				arrayMayor[i]=array[i];
+			}
+			
+			array=arrayMayor;
+			array[fin]=s;
+			System.out.println(toString(array));
 		}else
 		array[fin]=s;
 		fin++; //Se incrementa el valor del puntero al final de la cola
 		Depurador.imprimirTraza("Valor del puntero 'fin':"+fin);
-		
+		System.out.println(toString(array));
 	}
 	
 	public String pop() {
-		fin--; //Se decrementa el valor del puntero al final de la cola
+		//Se decrementa el valor del puntero al final de la cola
 		Depurador.imprimirTraza("Valor del puntero 'fin':"+fin);
 		Depurador.imprimirTraza("Se saca un elemento de la pila.");
-		String resultado=array[fin];
+		String aSacar=array[fin];
 		array[fin]=null;
-		if(array.length-fin==3) {
-			String[]arrayMenor=new String[array.length-3];
-			clonar(array,arrayMenor);
+		String[] arrayMenor=new String[array.length-3];
+		if((array.length+1)-fin==3) {
+			for(int i=0;i<arrayMenor.length-1;i++) {
+				arrayMenor[i]=array[i];
+				array=arrayMenor;
+			}
 		}
-		return resultado;
+		fin--;
+		return aSacar;
+		
 	}
 	public String[] clonar (String[] origen,String[] destino) {
 		int menorTamanio;
